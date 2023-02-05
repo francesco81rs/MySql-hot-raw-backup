@@ -1,0 +1,13 @@
+# IDE settings
+
+# IntelliJ project files
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# OS
+.DS_Store
+
+# Misc
+*.swp
