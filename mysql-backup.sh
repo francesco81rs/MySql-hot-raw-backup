@@ -31,7 +31,7 @@ printf "Data directory: $DATADIR\n"
 printf "Test if backup dir exist, if not exist it will be create for you\n"
 if [ -d $BKP_DIR ]
 then 
-	printf "${YELLOW}$BKP_DIR yet created\n${NC}"
+	printf "${YELLOW}$BKP_DIR created yet\n${NC}"
 else
 	mkdir $BKP_DIR  
 	printf "${GREEN} $BKP_DIR created\n${NC}"
@@ -44,7 +44,7 @@ printf "\n"
 if [ $BACKUPS_NUMBER -lt $RETENTION_POLICY ]
 then
 	mkdir $BKP_DIR/$TODAY_DIR
-	printf "${GREEN}Make backup on $BKP_DIR/$TODAY_DIR\n${NC}"
+	printf "${GREEN}Making backup on $BKP_DIR/$TODAY_DIR\n${NC}"
         cp -r $DATADIR/. $BKP_DIR/$TODAY_DIR
 fi
 printf "${GREEN}Unlock DB\n${NC}"
