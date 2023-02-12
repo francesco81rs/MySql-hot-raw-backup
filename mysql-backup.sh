@@ -38,6 +38,13 @@ else
 fi
 BACKUPS_NUMBER=$(find $BKP_DIR/* -maxdepth 0 -type d | wc -l)
 printf "Numbers of backups: ${GREEN}$BACKUPS_NUMBER\n${NC}"
+if [ $BACKUPS_NUMBER -gt $RETENTION_POLICY ]
+then
+  read -r -d $'\0' line < <(find "$BKP_DIR" -maxdepth 1 -printf '%T@ %p\0' 2>/dev/null | sort -z -n)
+  dirToDelete="${line#* }"
+  rm -r ${dirToDelete}
+  printf "${GREEN}Deleted oldest dir: ${dirToDelete}\n${NC}"
+fi
 printf "${RED}Lock DB\n${NC}"
 mysql -u$USER -p$PASS  -e "FLUSH TABLES WITH READ LOCK; SET GLOBAL read_only = 1;"
 printf "\n"
